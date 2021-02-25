@@ -1,78 +1,78 @@
 <template>
-<div class="container">
-  <div class="row">
-    <div class="col-3 offset-2">
-      <div class="card">
-        <div class="card-body text-center">
-          <h6>Total Pounds</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h6>Invoice</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h6>Avg $/CWT</h6>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 offset-md-8">
-      <div class="card border-0">
-        <div class="card-body">
-          <select class="form-control form-control-sm" v-model="selected">
+	<div class="container">
+		<div class="row">
+			<div class="col-3 offset-2">
+				<div class="card">
+					<div class="card-body text-center">
+						<h6>Total Pounds</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="card">
+					<div class="card-body text-center">
+						<h6>Invoice</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="card">
+					<div class="card-body text-center">
+						<h6>Avg $/CWT</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 offset-md-8">
+				<div class="card border-0">
+					<div class="card-body">
+						<select class="form-control form-control-sm" v-model="selected" @change="onChange($event)">
             <option v-for="option in options" v-bind:value="option.value">
               {{ option.text }}
             </option>
           </select>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Location</th>
-              <th>Part #</th>
-              <th>Steel Product</th>
-              <th>Weight</th>
-              <!-- Loop -->
-              <th>Big Creek Steel</th>
-              <th>Steel Core</th>
-              <th>AC Steel</th>
-              <th>RBI</th>
-              <!-- /Loop -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-bind:key="result.PartNo" v-for="result in results">
-              <td>{{result.Location}}</td>
-              <td>{{result.PartNo}}</td>
-              <td>{{result.Product}}</td>
-              <td>{{result.Product}}</td>
-              <td>{{result.Weight}}</td>
-              <!-- Loop -->
-              <td>{{result.Quotes[0].FinalPrice}}</td>
-              <td>{{result.Quotes[1].FinalPrice}}</td>
-              <td>{{result.Quotes[2].FinalPrice}}</td>
-              <!-- /Loop -->
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Location</th>
+								<th>Part #</th>
+								<th>Steel Product</th>
+								<th>Weight</th>
+								<!-- Loop -->
+								<th>Big Creek Steel</th>
+								<th>Steel Core</th>
+								<th>AC Steel</th>
+								<th>RBI</th>
+								<!-- /Loop -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-bind:key="result.PartNo" v-for="result in results">
+								<td>{{result.Location}}</td>
+								<td>{{result.PartNo}}</td>
+								<td>{{result.Product}}</td>
+								<td>{{result.Product}}</td>
+								<td>{{result.Weight}}</td>
+								<!-- Loop -->
+								<td>{{result.Quotes[0].FinalPrice}}</td>
+								<td>{{result.Quotes[1].FinalPrice}}</td>
+								<td>{{result.Quotes[2].FinalPrice}}</td>
+								<!-- /Loop -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -287,7 +287,9 @@
     }
   },
   methods: {
-
+    onChange(event) {
+        console.log(event.target.value)
+    }
   }
 }
 </script>
@@ -312,12 +314,13 @@
 		color: #42b983;
 	}
 
-  .price-best {
-    background-color: green;
-    color: #fff;
-  }
-  .price-worst {
-    background-color: red;
-    color: #fff;
-  }
+	.price-best {
+		background-color: green;
+		color: #fff;
+	}
+
+	.price-worst {
+		background-color: red;
+		color: #fff;
+	}
 </style>
