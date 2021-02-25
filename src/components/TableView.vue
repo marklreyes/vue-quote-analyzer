@@ -4,21 +4,21 @@
 			<div class="col-3 offset-2">
 				<div class="card">
 					<div class="card-body text-center">
-						<h6>Total Pounds</h6>
+						<p>Total Pounds</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="card">
 					<div class="card-body text-center">
-						<h6>Invoice</h6>
+						<p>Invoice</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="card">
 					<div class="card-body text-center">
-						<h6>Avg $/CWT</h6>
+						<p>Avg $/CWT</p>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
       options: [
         { text: 'Final Price', value: 'FinalPrice' },
         { text: 'Packaging Fee', value: 'PackagingFee' },
-        { text: 'Freigh tFee', value: 'FreightFee' }
+        { text: 'Freight Fee', value: 'FreightFee' }
       ],
       results:
       [
@@ -290,6 +290,9 @@
     onChange(event) {
         console.log(event.target.value)
     }
+  },
+  computed: {
+
   }
 }
 </script>
