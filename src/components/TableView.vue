@@ -307,10 +307,10 @@
   },
   computed: {
     invoiceUSD() {
-      return '$' + this.accountBalance;
+      return '$' + this.totalInvoice;
     },
     cwtUSD() {
-      return '$' + this.accountBalance;
+      return '$' + this.avgCWT;
     },  
     computedClass() {
       let className = 'default';
