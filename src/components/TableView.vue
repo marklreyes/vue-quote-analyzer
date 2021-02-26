@@ -5,6 +5,7 @@
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Total Pounds</p>
+						<p>{{ totalPounds }}</p>
 					</div>
 				</div>
 			</div>
@@ -12,6 +13,7 @@
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Invoice</p>
+						<p>{{ totalInvoice }}</p>
 					</div>
 				</div>
 			</div>
@@ -19,6 +21,7 @@
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Avg $/CWT</p>
+						<p>{{ avgCWT }}</p>
 					</div>
 				</div>
 			</div>
@@ -56,15 +59,15 @@
 						</thead>
 						<tbody>
 							<tr v-bind:key="result.PartNo" v-for="result in results">
-								<td>{{result.Location}}</td>
-								<td>{{result.PartNo}}</td>
-								<td>{{result.Product}}</td>
-								<td>{{result.Product}}</td>
-								<td>{{result.Weight}}</td>
+								<td>{{ result.Location }}</td>
+								<td>{{ result.PartNo }}</td>
+								<td>{{ result.Product }}</td>
+								<td>{{ result.Product }}</td>
+								<td>{{ result.Weight }}</td>
 								<!-- Loop -->
-								<td>{{result.Quotes[0].FinalPrice}}</td>
-								<td>{{result.Quotes[1].FinalPrice}}</td>
-								<td>{{result.Quotes[2].FinalPrice}}</td>
+								<td>{{ result.Quotes[0].FinalPrice }}</td>
+								<td>{{ result.Quotes[1].FinalPrice }}</td>
+								<td>{{ result.Quotes[2].FinalPrice }}</td>
 								<!-- /Loop -->
 							</tr>
 						</tbody>
