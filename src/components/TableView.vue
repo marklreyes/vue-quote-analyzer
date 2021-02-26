@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 offset-md-8">
+			<div class="col-md-3 offset-md-9">
 				<div class="card border-0">
 					<div class="card-body">
 						<select class="form-control form-control-sm" v-model="selected" @change="onChange($event)">
@@ -65,9 +65,9 @@
 								<td>{{ result.Weight }}</td>
 								<!-- Loop -->
                 <td v-bind:key="index" v-for="quote in result.Quotes">
-                  <span v-bind:class="classObjects.finalPrice">{{ quote.FinalPrice }}</span>
-                  <span v-bind:class="classObjects.packagingFee">{{ quote.PackagingFee }}</span>
-                  <span v-bind:class="classObjects.freightFee">{{ quote.FreightFee }}</span>
+                  <span v-bind:class="classObjects.finalPrice" v-on:click="isSelected(quote.FinalPrice)">${{ quote.FinalPrice }}</span>
+                  <span v-bind:class="classObjects.packagingFee" v-on:click="isSelected(quote.PackagingFee)">${{ quote.PackagingFee }}</span>
+                  <span v-bind:class="classObjects.freightFee" v-on:click="isSelected(quote.FreightFee)">${{ quote.FreightFee }}</span>
                 </td>
 								<!-- /Loop -->
 							</tr>
@@ -80,8 +80,6 @@
 </template>
 
 <script>
-  import QuoteCell from "./components/QuoteCell.vue";
-
 	export default {
   name: 'TableView',
   props: {
@@ -315,10 +313,12 @@
     }
   },
   methods: {
+    isSelected(quote) {
+      console.log('quote selected', quote);
+    },
     onChange(event) {
         switch(event.target.value) {
           case 'FinalPrice':
-            console.log('show FinalPrice');
             this.classObjects.finalPrice = 'd-block';
             this.classObjects.packagingFee = 'd-none';
             this.classObjects.freightFee = 'd-none';            
