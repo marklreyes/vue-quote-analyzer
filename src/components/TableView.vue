@@ -1,21 +1,21 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-3 offset-2">
+			<div class="col-md-3 offset-md-2">
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Total Pounds</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-md-3">
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Invoice</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-md-3">
 				<div class="card">
 					<div class="card-body text-center">
 						<p>Avg $/CWT</p>
@@ -79,7 +79,18 @@
 	export default {
   name: 'TableView',
   props: {
-    msg: String
+    totalPounds: {
+      type: Number,
+      require: true
+    },
+    totalInvoice: {
+      type: Number,
+      require: true
+    },
+    avgCWT: {
+      type: Number,
+      require: true
+    }   
   },
   data() {
     return {
@@ -292,7 +303,9 @@
     }
   },
   computed: {
-
+    accountInUSD() {
+      return '$' + this.accountBalance;
+    }
   }
 }
 </script>
