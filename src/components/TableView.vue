@@ -65,9 +65,9 @@
 								<td>{{ result.Product }}</td>
 								<td>{{ result.Weight }}</td>
 								<!-- Loop -->
-								<td>{{ result.Quotes[0].FinalPrice }}</td>
-								<td>{{ result.Quotes[1].FinalPrice }}</td>
-								<td>{{ result.Quotes[2].FinalPrice }}</td>
+								<td class="computedClass">{{ result.Quotes[0].FinalPrice }}</td>
+								<td class="computedClass">{{ result.Quotes[1].FinalPrice }}</td>
+								<td class="computedClass">{{ result.Quotes[2].FinalPrice }}</td>
 								<!-- /Loop -->
 							</tr>
 						</tbody>
@@ -306,8 +306,18 @@
     }
   },
   computed: {
-    accountInUSD() {
+    invoiceUSD() {
       return '$' + this.accountBalance;
+    },
+    cwtUSD() {
+      return '$' + this.accountBalance;
+    },  
+    computedClass() {
+      let className = 'default';
+
+      // More complicated logic to determine what class should be applied
+
+      return className;
     }
   }
 }
