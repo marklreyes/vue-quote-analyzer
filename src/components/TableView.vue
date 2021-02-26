@@ -62,12 +62,13 @@
 								<td>{{ result.Location }}</td>
 								<td>{{ result.PartNo }}</td>
 								<td>{{ result.Product }}</td>
-								<td>{{ result.Product }}</td>
 								<td>{{ result.Weight }}</td>
 								<!-- Loop -->
-								<td class="computedClass">{{ result.Quotes[0].FinalPrice }}</td>
-								<td class="computedClass">{{ result.Quotes[1].FinalPrice }}</td>
-								<td class="computedClass">{{ result.Quotes[2].FinalPrice }}</td>
+                <td v-bind:key="index" v-for="quote in result.Quotes">
+                  <span v-bind:class="classObjects.finalPrice">{{ quote.FinalPrice }}</span>
+                  <span v-bind:class="classObjects.packagingFee">{{ quote.PackagingFee }}</span>
+                  <span v-bind:class="classObjects.freightFee">{{ quote.FreightFee }}</span>
+                </td>
 								<!-- /Loop -->
 							</tr>
 						</tbody>
@@ -79,24 +80,37 @@
 </template>
 
 <script>
+  import QuoteCell from "./components/QuoteCell.vue";
+
 	export default {
   name: 'TableView',
   props: {
     totalPounds: {
-      type: Number,
-      require: true
+      type: Number
     },
     totalInvoice: {
-      type: Number,
-      require: true
+      type: Number
     },
     avgCWT: {
-      type: Number,
-      require: true
-    }   
+      type: Number
+    },
+    finalPrice: {
+      type: Array
+    },
+    packagingFee: {
+      type: Array
+    },
+    freightFee: {
+      type: Array
+    }
   },
   data() {
     return {
+      classObjects: {
+        finalPrice: 'd-block',
+        packagingFee: 'd-none',
+        freightFee: 'd-none'
+      },
       selected: 'FinalPrice',
       options: [
         { text: 'Final Price', value: 'FinalPrice' },
@@ -302,10 +316,32 @@
   },
   methods: {
     onChange(event) {
-        console.log(event.target.value)
+        switch(event.target.value) {
+          case 'FinalPrice':
+            console.log('show FinalPrice');
+            this.classObjects.finalPrice = 'd-block';
+            this.classObjects.packagingFee = 'd-none';
+            this.classObjects.freightFee = 'd-none';            
+            break;
+          case 'PackagingFee':
+            console.log('show PackagingFee');
+            this.classObjects.finalPrice = 'd-none';
+            this.classObjects.packagingFee = 'd-block';
+            this.classObjects.freightFee = 'd-none'; 
+            break;
+          case 'FreightFee':
+            console.log('show FreightFee');
+            this.classObjects.finalPrice = 'd-none';
+            this.classObjects.packagingFee = 'd-none';
+            this.classObjects.freightFee = 'd-block'; 
+            break;
+        }
     }
   },
   computed: {
+    toUSD(price) {
+      return '$' + price;
+    },
     invoiceUSD() {
       return '$' + this.totalInvoice;
     },
@@ -341,15 +377,5 @@
 
 	a {
 		color: #42b983;
-	}
-
-	.price-best {
-		background-color: green;
-		color: #fff;
-	}
-
-	.price-worst {
-		background-color: red;
-		color: #fff;
 	}
 </style>

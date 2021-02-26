@@ -8,7 +8,7 @@
         </p>
       </div>
     </section>
-		<TableView msg="Welcome to Your Vue.js App" />
+		<TableView/>
 	</div>
 </template>
 
